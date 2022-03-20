@@ -97,13 +97,31 @@ const onChange = () => {
   }, []);
 };
 
-const RenderQRCode = () => {
+const RenderQRCode = ({
+  type,
+  setConfig,
+  initialValues,
+}: {
+  type: 'zh' | 'en';
+  setConfig: any;
+  initialValues: any;
+}) => {
   const [url, setUrl] = useState('');
   const [value, setValue] = useState('');
 
-  return (
+  return type === 'zh' ? (
     <Popconfirm
-      title={<Input onChange={(e) => setUrl(e.target.value)} />}
+      title={
+        <Input
+          onChange={(e) => {
+            setUrl(e.target.value);
+            setConfig((data) => ({
+              ...data,
+              qrcode: e.target.value,
+            }));
+          }}
+        />
+      }
       onConfirm={() => setValue(url)}
     >
       {url ? (
@@ -114,6 +132,8 @@ const RenderQRCode = () => {
         <PlusSquareOutlined style={{ fontSize: 50 }} />
       )}
     </Popconfirm>
+  ) : (
+    <QRCode size={50} value={initialValues['qrcode']} />
   );
 };
 
@@ -162,7 +182,11 @@ export const CardItem: React.FC<CardItemProps> = ({
         <Col span={5}>
           <Row gutter={[0, 0]}>
             <Col span={8}>
-              <RenderQRCode />
+              <RenderQRCode
+                type={type}
+                setConfig={setConfig}
+                initialValues={initialValues}
+              />
             </Col>
             <Col span={16}>
               {type === 'zh'

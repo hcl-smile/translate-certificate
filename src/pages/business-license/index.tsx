@@ -27,6 +27,7 @@ export default () => {
     domicile: '',
     registrationAuthority: '',
     registrationDate: '',
+    qrcode: '',
   });
 
   return (
