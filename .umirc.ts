@@ -13,7 +13,8 @@ export default defineConfig({
   layout: {},
   proxy: {
     '/api': {
-      target: 'https://translate-weld.vercel.app',
+      // target: 'https://translate-weld.vercel.app',
+      target: 'http://localhost:3000',
       changeOrigin: true,
     },
   },

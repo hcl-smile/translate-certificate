@@ -7,8 +7,8 @@ const translateEn = async (id: string, text: string, setEnConfig: any) => {
   if (!text) return;
 
   const res = await axios('/api/upload', {
-    method: 'post',
-    data: {
+    method: 'get',
+    params: {
       text,
     },
   });
@@ -16,7 +16,7 @@ const translateEn = async (id: string, text: string, setEnConfig: any) => {
   setEnConfig &&
     setEnConfig((data: any) => ({
       ...data,
-      [id]: res.data.data.translated,
+      [id]: res.data.translated,
     }));
 };
 

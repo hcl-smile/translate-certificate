@@ -81,15 +81,15 @@ const getValue = (type: 'zh' | 'en', initialValues: any, id: string) => {
 const onChange = () => {
   return useCallback(async (id: string, value: string, setConfig: any) => {
     const res = await axios('/api/upload', {
-      method: 'post',
-      data: {
+      method: 'get',
+      params: {
         text: value,
       },
     });
 
     setConfig((data: any) => ({
       ...data,
-      [id]: res?.data?.data.translated,
+      [id]: res?.data?.translated,
     }));
   }, []);
 };
