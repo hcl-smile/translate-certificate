@@ -204,10 +204,10 @@ export default () => {
       <Col span={24}>
         <Card title={'身份证国徽面'}>
           <Row gutter={[30, 0]}>
-            <Col span={12}>
+            <Col span={10}>
               <CardText type={'zh'} setOenConfig={setOenConfig} />
             </Col>
-            <Col span={12}>
+            <Col span={14}>
               <CardText type={'en'} initialValues={oEnConfig} />
             </Col>
           </Row>
