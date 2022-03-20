@@ -1,9 +1,12 @@
-import React, { useCallback, useMemo } from 'react';
-import { Form, Row, Col, Input } from 'antd';
+import React, { useCallback, useMemo, useState } from 'react';
+import { Form, Row, Col, Input, Popconfirm, Tooltip } from 'antd';
 // @ts-ignore
 import QRCode from 'qrcode.react';
 import _ from 'lodash';
 import { axios } from '@/utils';
+import icon1 from '@/public/1.png';
+import icon2 from '@/public/2.png';
+import { PlusSquareOutlined } from '@ant-design/icons';
 
 interface CardItemProps {
   type: 'zh' | 'en';
@@ -94,6 +97,26 @@ const onChange = () => {
   }, []);
 };
 
+const RenderQRCode = () => {
+  const [url, setUrl] = useState('');
+  const [value, setValue] = useState('');
+
+  return (
+    <Popconfirm
+      title={<Input onChange={(e) => setUrl(e.target.value)} />}
+      onConfirm={() => setValue(url)}
+    >
+      {url ? (
+        <Tooltip placement={'top'} title={value}>
+          <QRCode size={50} value={value} />
+        </Tooltip>
+      ) : (
+        <PlusSquareOutlined style={{ fontSize: 50 }} />
+      )}
+    </Popconfirm>
+  );
+};
+
 export const CardItem: React.FC<CardItemProps> = ({
   type,
   initialValues,
@@ -139,7 +162,7 @@ export const CardItem: React.FC<CardItemProps> = ({
         <Col span={5}>
           <Row gutter={[0, 0]}>
             <Col span={8}>
-              <QRCode size={50} value={'https://www.baidu.com'} />
+              <RenderQRCode />
             </Col>
             <Col span={16}>
               {type === 'zh'
@@ -149,7 +172,11 @@ export const CardItem: React.FC<CardItemProps> = ({
           </Row>
         </Col>
       </Row>
-      <div style={{ marginTop: 50 }}>
+      <div>
+        <img src={icon1} width={150} />
+        <img src={icon2} width={150} />
+      </div>
+      <div>
         <Row gutter={[20, 10]}>
           {dataConfig.map((ret) => {
             const Com = ret.id === 'scope' ? Input.TextArea : Input;

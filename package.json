@@ -24,10 +24,12 @@
     "@ant-design/pro-form": "^1.59.2",
     "@ant-design/pro-layout": "^6.5.0",
     "axios": "^0.26.1",
+    "jspdf": "^2.5.1",
     "lodash": "^4.17.21",
     "qrcode.react": "^2.0.0",
     "react": "17.x",
     "react-dom": "17.x",
+    "redocx": "^1.1.4",
     "styled-components": "^5.3.3",
     "umi": "^3.5.21"
   },
