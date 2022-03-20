@@ -115,7 +115,7 @@ const RenderQRCode = ({
         <Input
           onChange={(e) => {
             setUrl(e.target.value);
-            setConfig((data) => ({
+            setConfig((data: any) => ({
               ...data,
               qrcode: e.target.value,
             }));
