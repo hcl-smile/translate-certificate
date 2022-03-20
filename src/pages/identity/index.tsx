@@ -6,7 +6,7 @@ import { axios } from '@/utils';
 const translateEn = async (id: string, text: string, setEnConfig: any) => {
   if (!text) return;
 
-  const res = await axios('/api/upload', {
+  const res = await axios('https://translate-weld.vercel.app/api/upload', {
     method: 'get',
     params: {
       text,

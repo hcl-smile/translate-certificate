@@ -80,7 +80,7 @@ const getValue = (type: 'zh' | 'en', initialValues: any, id: string) => {
 
 const onChange = () => {
   return useCallback(async (id: string, value: string, setConfig: any) => {
-    const res = await axios('/api/upload', {
+    const res = await axios('https://translate-weld.vercel.app/api/upload', {
       method: 'get',
       params: {
         text: value,
