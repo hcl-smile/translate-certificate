@@ -16,8 +16,8 @@ export const layout = (): BasicLayoutProps => {
           path: '/license',
         },
         {
-          name: '文档',
-          path: '/docx',
+          name: '发票',
+          path: '/invoice',
         },
       ],
     },

@@ -4,6 +4,7 @@ import { readFile, translateAndDownload } from '@/utils';
 import JSZipUtils from 'jszip-utils';
 import { createReport } from 'docx-templates';
 import { useState } from 'react';
+import { UploadBtn } from '@/components/upload-btn';
 
 export default () => {
   const [form] = Form.useForm();
@@ -49,37 +50,11 @@ export default () => {
       value: '',
     },
   };
-  const [template, setTemplate] = useState<any>(null);
 
   return (
     <Row style={{ padding: 20 }} gutter={[0, 20]}>
       <Col span={24}>
-        <Row gutter={[20, 0]}>
-          <Col>
-            <Upload
-              onChange={async ({ file }) => {
-                if (!file.originFileObj) return;
-
-                const template = (await readFile(file.originFileObj)) as Buffer;
-
-                setTemplate(template);
-              }}
-            >
-              <Button>上传营业执照模板</Button>
-            </Upload>
-          </Col>
-          <Col>
-            <Button
-              onClick={async () => {
-                const fields = form.getFieldsValue();
-
-                await translateAndDownload(fields, template);
-              }}
-            >
-              翻译转换
-            </Button>
-          </Col>
-        </Row>
+        <UploadBtn form={form} title={'上传营业执照模板'} />
       </Col>
       <Col span={24}>
         <Form

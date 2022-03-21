@@ -43,6 +43,7 @@ export const translateAndDownload = async (fields: any, template: any) => {
     .split('&')
     .reduce((prev: any, cur: any) => {
       const str = cur.split('=');
+
       const key = str[0].trim().toLowerCase() as string;
       const value = str[1].trim() as string;
 
@@ -60,16 +61,15 @@ export const translateAndDownload = async (fields: any, template: any) => {
     additionalJsContext: {
       // all of these will be available to JS snippets in your template commands (see below)
       foo: 'bar',
-      qrCode: async (url) => {
-        console.log(url, 'doerere ');
-        /* build QR and return image data */
-      },
+      // qrCode: async (url) => {
+      //   /* build QR and return image data */
+      // },
     },
   });
 
   await saveDataToFile(
     report,
-    'text.docx',
+    'text.license',
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
   );
 };
