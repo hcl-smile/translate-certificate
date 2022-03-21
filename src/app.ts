@@ -15,6 +15,10 @@ export const layout = (): BasicLayoutProps => {
           name: '营业执照',
           path: '/license',
         },
+        {
+          name: '文档',
+          path: '/docx',
+        },
       ],
     },
   };

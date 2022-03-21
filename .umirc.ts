@@ -8,6 +8,7 @@ export default defineConfig({
     { path: '/', exact: true, redirect: '/identity' },
     { path: '/identity', component: '@/pages/identity/index' },
     { path: '/license', component: '@/pages/business-license/index' },
+    { path: '/docx', component: '@/pages/docx/index' },
   ],
   fastRefresh: {},
   layout: {},

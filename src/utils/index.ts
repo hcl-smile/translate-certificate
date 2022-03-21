@@ -1,7 +1,2 @@
-import axios from 'axios';
-
-axios.create({
-  baseURL: 'https://translate-weld.vercel.app',
-});
-
-export { axios };
+export * from './translate-download';
+export * from './axios';
