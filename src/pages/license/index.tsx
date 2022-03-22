@@ -52,27 +52,27 @@ export default () => {
   };
 
   return (
-    <Row style={{ padding: 20 }} gutter={[0, 20]}>
-      <Col span={24}>
-        <UploadBtn form={form} title={'上传营业执照模板'} />
-      </Col>
-      <Col span={24}>
-        <Form
-          form={form}
-          labelCol={{ xs: 3, sm: 3, xl: 3 }}
-          initialValues={{
-            name: '',
-            type: '',
-            representative: '',
-            scope: '',
-            capital: '',
-            date: '',
-            validity: '',
-            domicile: '',
-            authority: '',
-            authorityDate: '',
-          }}
-        >
+    <Form
+      form={form}
+      labelCol={{ xs: 3, sm: 3, xl: 3 }}
+      initialValues={{
+        name: '',
+        type: '',
+        representative: '',
+        scope: '',
+        capital: '',
+        date: '',
+        validity: '',
+        domicile: '',
+        authority: '',
+        authorityDate: '',
+      }}
+    >
+      <Row style={{ padding: 20 }} gutter={[0, 20]}>
+        <Col span={24}>
+          <UploadBtn form={form} title={'上传营业执照模板'} />
+        </Col>
+        <Col span={24}>
           <Row gutter={[30, 0]}>
             {Object.keys(initialValues).map((ret: any) => {
               const Com = ret === 'scope' ? Input.TextArea : Input;
@@ -83,6 +83,7 @@ export default () => {
                     name={ret}
                     id={ret}
                     label={initialValues[ret].label}
+                    rules={[{ required: true }]}
                   >
                     <Com />
                   </Form.Item>
@@ -90,8 +91,8 @@ export default () => {
               );
             })}
           </Row>
-        </Form>
-      </Col>
-    </Row>
+        </Col>
+      </Row>
+    </Form>
   );
 };

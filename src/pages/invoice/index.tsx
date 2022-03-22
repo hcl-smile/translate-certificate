@@ -1,4 +1,9 @@
+import { Row, Col, Card, Form } from 'antd';
+import { CardItem } from '@/pages/invoice/item';
+import { UploadBtn } from '@/components/upload-btn';
+
 export default () => {
+  const [form] = Form.useForm();
   const initialValues = {
     title: {
       label: '省市',
@@ -81,7 +86,7 @@ export default () => {
       value: '',
     },
     total_price_tax: {
-      label: '税价合计',
+      label: '价税合计',
       value: '',
     },
     lower_case: {
@@ -93,7 +98,7 @@ export default () => {
       value: '',
     },
     seller_id_taxpayer: {
-      label: '销售方名称',
+      label: '销售方纳税人识别号',
       value: '',
     },
     seller_address_phone: {
@@ -125,6 +130,51 @@ export default () => {
       value: '',
     },
   };
+  const items = Object.keys(initialValues);
 
-  return <div></div>;
+  return (
+    <Form form={form}>
+      <Row gutter={[0, 20]}>
+        <Col span={24}>
+          <UploadBtn form={form} title={'上传发票模板'} />
+        </Col>
+        <Col span={24}>
+          <Row gutter={[0, 20]}>
+            <Col span={24}>
+              <Card title={'发票头部'}>
+                <CardItem
+                  items={items.slice(0, 6)}
+                  initialValues={initialValues}
+                />
+              </Card>
+              <Card title={'购买方'}>
+                <CardItem
+                  items={items.slice(6, 11)}
+                  initialValues={initialValues}
+                />
+              </Card>
+              {/*<Card title={'规格型号单位'}>*/}
+              {/*  <CardItem*/}
+              {/*    items={items.slice(11, 22)}*/}
+              {/*    initialValues={initialValues}*/}
+              {/*  />*/}
+              {/*</Card>*/}
+              {/*<Card title={'销售方'}>*/}
+              {/*  <CardItem*/}
+              {/*    items={items.slice(22, 26)}*/}
+              {/*    initialValues={initialValues}*/}
+              {/*  />*/}
+              {/*</Card>*/}
+              {/*<Card title={'收款人'}>*/}
+              {/*  <CardItem*/}
+              {/*    items={items.slice(26, 30)}*/}
+              {/*    initialValues={initialValues}*/}
+              {/*  />*/}
+              {/*</Card>*/}
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    </Form>
+  );
 };

@@ -12,7 +12,12 @@ const CardItem = ({
     const Com = ret === 'address' ? Input.TextArea : Input;
 
     return (
-      <Form.Item key={ret} name={ret} label={initialValues[ret].label}>
+      <Form.Item
+        key={ret}
+        name={ret}
+        label={initialValues[ret].label}
+        rules={[{ required: true }]}
+      >
         <Com />
       </Form.Item>
     );

@@ -22,7 +22,11 @@ const downloadURL = async (data: any, fileName: string) => {
   a.remove();
 };
 
-export const translateAndDownload = async (fields: any, template: any) => {
+export const translateAndDownload = async (
+  fields: any,
+  template: any,
+  title: string,
+) => {
   if (!fields || !template) return;
 
   const transString = Object.keys(fields).reduce((prev, cur) => {
@@ -32,9 +36,11 @@ export const translateAndDownload = async (fields: any, template: any) => {
     return prev;
   }, [] as string[]);
 
+  console.log(fields, transString, '===');
+
   const res = await axios('/api/upload', {
-    method: 'get',
-    params: {
+    method: 'post',
+    data: {
       text: transString.join('&'),
     },
   });
@@ -69,7 +75,7 @@ export const translateAndDownload = async (fields: any, template: any) => {
 
   await saveDataToFile(
     report,
-    'text.license',
+    `${title}.docx`,
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
   );
 };

@@ -1,8 +1,15 @@
-import { Button, Col, Row, Upload } from 'antd';
+import { Button, Col, Row, Upload, Tooltip } from 'antd';
 import { readFile, translateAndDownload } from '@/utils';
 import { useState } from 'react';
+import { FormInstance } from '@ant-design/pro-form';
 
-export const UploadBtn = ({ form, title }: { form: any; title: string }) => {
+export const UploadBtn = ({
+  form,
+  title,
+}: {
+  form: FormInstance;
+  title: string;
+}) => {
   const [template, setTemplate] = useState<any>(null);
 
   return (
@@ -21,16 +28,26 @@ export const UploadBtn = ({ form, title }: { form: any; title: string }) => {
         </Upload>
       </Col>
       <Col>
-        <Button
-          disabled={!template}
-          onClick={async () => {
-            const fields = form.getFieldsValue();
+        <Tooltip overlay={!template ? `请先${title}` : ''}>
+          <Button
+            htmlType={'submit'}
+            disabled={!template}
+            onClick={async () => {
+              const fields = form.getFieldsValue();
+              const valid = Object.values(fields).some(
+                (ret) => ret === '' || ret === undefined,
+              );
 
-            await translateAndDownload(fields, template);
-          }}
-        >
-          翻译转换
-        </Button>
+              if (valid) {
+                return;
+              }
+
+              await translateAndDownload(fields, template, title);
+            }}
+          >
+            翻译转换
+          </Button>
+        </Tooltip>
       </Col>
     </Row>
   );
