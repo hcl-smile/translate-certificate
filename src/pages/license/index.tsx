@@ -2,13 +2,16 @@ import { Button, Upload, UploadProps, Row, Col, Form, Input } from 'antd';
 import { readFile, translateAndDownload } from '@/utils';
 // @ts-ignore
 import JSZipUtils from 'jszip-utils';
-import { createReport } from 'docx-templates';
 import { useState } from 'react';
 import { UploadBtn } from '@/components/upload-btn';
 
 export default () => {
   const [form] = Form.useForm();
   const initialValues: any = {
+    qrcodeUrl: {
+      label: '二维码',
+      value: '',
+    },
     name: {
       label: '名称',
       value: '',
@@ -17,7 +20,7 @@ export default () => {
       label: '类型',
       value: '',
     },
-    representative: {
+    presentation: {
       label: '法定代表人',
       value: '',
     },
@@ -56,9 +59,10 @@ export default () => {
       form={form}
       labelCol={{ xs: 3, sm: 3, xl: 3 }}
       initialValues={{
+        qrcodeUrl: '',
         name: '',
         type: '',
-        representative: '',
+        presentation: '',
         scope: '',
         capital: '',
         date: '',

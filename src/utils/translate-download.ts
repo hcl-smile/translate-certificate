@@ -1,5 +1,7 @@
 import { axios } from '@/utils/index';
 import { createReport } from 'docx-templates';
+// @ts-ignore
+import QRCode from 'qrcode';
 
 const saveDataToFile = async (data: any, fileName: string, mimeType: any) => {
   const blob = new Blob([data], { type: mimeType });
@@ -31,12 +33,13 @@ export const translateAndDownload = async (
 
   const transString = Object.keys(fields).reduce((prev, cur) => {
     const str = `${cur}=${fields[cur]}`;
-    prev.push(str);
+
+    if (cur !== 'qrcodeUrl') {
+      prev.push(str);
+    }
 
     return prev;
   }, [] as string[]);
-
-  console.log(fields, transString, '===');
 
   const res = await axios('/api/upload', {
     method: 'post',
@@ -62,14 +65,15 @@ export const translateAndDownload = async (
     template,
     data: {
       ...templateData,
+      qrcodeUrl: fields.qrcodeUrl,
     },
     cmdDelimiter: ['{', '}'],
     additionalJsContext: {
-      // all of these will be available to JS snippets in your template commands (see below)
-      foo: 'bar',
-      // qrCode: async (url) => {
-      //   /* build QR and return image data */
-      // },
+      qrcode: async (url: string) => {
+        const dataUrl = await QRCode.toDataURL(url);
+        const data = dataUrl.slice('data:image/gif;base64,'.length);
+        return { width: 3, height: 3, data, extension: '.gif' };
+      },
     },
   });
 
