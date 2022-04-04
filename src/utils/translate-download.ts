@@ -31,40 +31,20 @@ export const translateAndDownload = async (
 ) => {
   if (!fields || !template) return;
 
-  const transString = Object.keys(fields).reduce((prev, cur) => {
-    const str = `${cur}=${fields[cur]}`;
-
-    if (cur !== 'qrcodeUrl') {
-      prev.push(str);
-    }
-
-    return prev;
-  }, [] as string[]);
-
   const res = await axios('/api/upload', {
     method: 'post',
     data: {
-      text: transString.join('&'),
+      fields: {
+        ...fields,
+        qrcodeUrl: undefined,
+      },
     },
   });
-
-  const templateData = res.data.translated
-    .split('&')
-    .reduce((prev: any, cur: any) => {
-      const str = cur.split('=');
-
-      const key = str[0].trim().toLowerCase() as string;
-      const value = str[1].trim() as string;
-
-      prev[key] = value;
-
-      return prev;
-    }, {} as Record<string, any>);
 
   const report = await createReport({
     template,
     data: {
-      ...templateData,
+      ...res?.data,
       qrcodeUrl: fields.qrcodeUrl,
     },
     cmdDelimiter: ['{', '}'],
@@ -72,7 +52,7 @@ export const translateAndDownload = async (
       qrcode: async (url: string) => {
         const dataUrl = await QRCode.toDataURL(url);
         const data = dataUrl.slice('data:image/gif;base64,'.length);
-        return { width: 3, height: 3, data, extension: '.gif' };
+        return { width: 2, height: 2, data, extension: '.gif' };
       },
     },
   });

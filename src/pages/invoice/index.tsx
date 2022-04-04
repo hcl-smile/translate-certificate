@@ -5,55 +5,59 @@ import { UploadBtn } from '@/components/upload-btn';
 export default () => {
   const [form] = Form.useForm();
   const initialValues = {
+    qrcodeUrl: {
+      label: '二维码',
+      value: '',
+    },
     title: {
       label: '省市',
       value: '',
     },
-    machine_number: {
+    machinenumber: {
       label: '机器编码',
       value: '',
     },
-    invoice_code: {
+    invoicecode: {
       label: '发票代码',
       value: '',
     },
-    invoice_number: {
+    invoicenumber: {
       label: '发票号码',
       value: '',
     },
-    invoice_date: {
+    invoicedate: {
       label: '开票日期',
       value: '',
     },
-    check_code: {
+    checkcode: {
       label: '校验码',
       value: '',
     },
-    buyer_name: {
+    buyername: {
       label: '买方名称',
       value: '',
     },
-    buyer_id_taxpayer: {
+    buyeridtaxpayer: {
       label: '买方纳税人识别号',
       value: '',
     },
-    buyer_address_phone: {
+    buyeraddressphone: {
       label: '买方发票代码',
       value: '',
     },
-    buyer_bank_account: {
+    buyerbankaccount: {
       label: '买方开户行及账户',
       value: '',
     },
-    buyer_password_area: {
+    buyerpasswordarea: {
       label: '买方密码区',
       value: '',
     },
-    goods_taxable_services: {
+    goodstaxableservices: {
       label: '货物或应税劳务、服务名称',
       value: '',
     },
-    spec_model: {
+    specmodel: {
       label: '规格型号',
       value: '',
     },
@@ -65,7 +69,7 @@ export default () => {
       label: '数量',
       value: '',
     },
-    unit_price: {
+    unitprice: {
       label: '单价',
       value: '',
     },
@@ -73,11 +77,11 @@ export default () => {
       label: '金额',
       value: '',
     },
-    tax_rate: {
+    taxrate: {
       label: '税率',
       value: '',
     },
-    amount_tax: {
+    amounttax: {
       label: '税额',
       value: '',
     },
@@ -85,27 +89,27 @@ export default () => {
       label: '合计',
       value: '',
     },
-    total_price_tax: {
+    totalpricetax: {
       label: '价税合计',
       value: '',
     },
-    lower_case: {
+    lowercase: {
       label: '小写',
       value: '',
     },
-    seller_name: {
+    sellername: {
       label: '销售方名称',
       value: '',
     },
-    seller_id_taxpayer: {
+    selleridtaxpayer: {
       label: '销售方纳税人识别号',
       value: '',
     },
-    seller_address_phone: {
+    selleraddressphone: {
       label: '销售方地址电话',
       value: '',
     },
-    seller_bank_account: {
+    sellerbankaccount: {
       label: '销售方开户行及账号',
       value: '',
     },
@@ -153,24 +157,24 @@ export default () => {
                   initialValues={initialValues}
                 />
               </Card>
-              {/*<Card title={'规格型号单位'}>*/}
-              {/*  <CardItem*/}
-              {/*    items={items.slice(11, 22)}*/}
-              {/*    initialValues={initialValues}*/}
-              {/*  />*/}
-              {/*</Card>*/}
-              {/*<Card title={'销售方'}>*/}
-              {/*  <CardItem*/}
-              {/*    items={items.slice(22, 26)}*/}
-              {/*    initialValues={initialValues}*/}
-              {/*  />*/}
-              {/*</Card>*/}
-              {/*<Card title={'收款人'}>*/}
-              {/*  <CardItem*/}
-              {/*    items={items.slice(26, 30)}*/}
-              {/*    initialValues={initialValues}*/}
-              {/*  />*/}
-              {/*</Card>*/}
+              <Card title={'规格型号单位'}>
+                <CardItem
+                  items={items.slice(11, 22)}
+                  initialValues={initialValues}
+                />
+              </Card>
+              <Card title={'销售方'}>
+                <CardItem
+                  items={items.slice(22, 26)}
+                  initialValues={initialValues}
+                />
+              </Card>
+              <Card title={'收款人'}>
+                <CardItem
+                  items={items.slice(26)}
+                  initialValues={initialValues}
+                />
+              </Card>
             </Col>
           </Row>
         </Col>
