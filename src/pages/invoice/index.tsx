@@ -147,31 +147,31 @@ export default () => {
             <Col span={24}>
               <Card title={'发票头部'}>
                 <CardItem
-                  items={items.slice(0, 6)}
+                  items={items.slice(0, 7)}
                   initialValues={initialValues}
                 />
               </Card>
               <Card title={'购买方'}>
                 <CardItem
-                  items={items.slice(6, 11)}
+                  items={items.slice(7, 12)}
                   initialValues={initialValues}
                 />
               </Card>
               <Card title={'规格型号单位'}>
                 <CardItem
-                  items={items.slice(11, 22)}
+                  items={items.slice(12, 23)}
                   initialValues={initialValues}
                 />
               </Card>
               <Card title={'销售方'}>
                 <CardItem
-                  items={items.slice(22, 26)}
+                  items={items.slice(23, 28)}
                   initialValues={initialValues}
                 />
               </Card>
               <Card title={'收款人'}>
                 <CardItem
-                  items={items.slice(26)}
+                  items={items.slice(28)}
                   initialValues={initialValues}
                 />
               </Card>
