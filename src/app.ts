@@ -19,6 +19,14 @@ export const layout = (): BasicLayoutProps => {
           name: '发票',
           path: '/invoice',
         },
+        {
+          name: '文件',
+          path: '/fileManage',
+        },
+        {
+          name: '转图片',
+          path: '/toImage',
+        },
       ],
     },
   };

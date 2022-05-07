@@ -9,6 +9,8 @@ export default defineConfig({
     { path: '/identity', component: '@/pages/identity/index' },
     { path: '/license', component: '@/pages/license/index' },
     { path: '/invoice', component: '@/pages/invoice/index' },
+    { path: '/fileManage', component: '@/pages/file-manage/index' },
+    { path: '/toImage', component: '@/pages/business-to-image/index' },
   ],
   fastRefresh: {},
   layout: {},
