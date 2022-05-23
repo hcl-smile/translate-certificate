@@ -1,12 +1,33 @@
+import React, { useEffect } from 'react';
 // @ts-ignore
 import bgUrl from '@/assets/horizontal1.jpeg';
 // @ts-ignore
 import QRCode from 'qrcode.react';
 import { Seal } from '@/pages/business-to-image/components/seal';
+import { CompanyInfoProps } from '@/pages/business-to-image';
+import { download } from '@/pages/business-to-image';
 
-const checkArrs = ['漳', '州', '市', '公', '安', '局', '办', '事', '处'];
+export const Horizontal: React.FC<{ info: CompanyInfoProps }> = ({ info }) => {
+  useEffect(() => {
+    download('2', info);
+  }, [info]);
 
-export const Horizontal = () => {
+  const {
+    Name,
+    CreditCode,
+    EconKind,
+    OperName,
+    Scope,
+    RegistCapi,
+    StartDate,
+    TermStart,
+    TermEnd,
+    Address,
+    BelongOrg,
+    CheckDate,
+    WebSiteUrl,
+  } = info;
+
   return (
     <div id={'node2'}>
       <div
@@ -20,22 +41,22 @@ export const Horizontal = () => {
         }}
       >
         <div style={{ paddingTop: 335, paddingLeft: 165, opacity: 0.8 }}>
-          91610133MA6UT2LK6C
+          {CreditCode}
         </div>
         <div
           style={{ position: 'absolute', left: 290, top: 452, opacity: 0.8 }}
         >
-          北京美乐美客家有限公司
+          {Name}
         </div>
         <div
           style={{ position: 'absolute', left: 290, top: 499, opacity: 0.8 }}
         >
-          有限责任公司
+          {EconKind}
         </div>
         <div
           style={{ position: 'absolute', left: 290, top: 546, opacity: 0.8 }}
         >
-          黄某某
+          {OperName}
         </div>
         <div
           style={{
@@ -46,23 +67,30 @@ export const Horizontal = () => {
             opacity: 0.8,
           }}
         >
-          零售家具、木制品零售家具、木制品零售家具、木制品零售家具、木制品零售家具、木制品零售家具、木制品零售家具、木制品零售家具、木制品
+          {Scope}
         </div>
 
         <div
           style={{ position: 'absolute', left: 865, top: 452, opacity: 0.8 }}
         >
-          300万人民币
+          {RegistCapi}
         </div>
         <div
           style={{ position: 'absolute', left: 865, top: 499, opacity: 0.8 }}
         >
-          2013年06月21日
+          {StartDate?.split('-')[0]}年{StartDate?.split('-')[1]}月
+          {StartDate?.split('-')[2]}日
         </div>
         <div
           style={{ position: 'absolute', left: 865, top: 546, opacity: 0.8 }}
         >
-          2013年06月21日 至 2022年06月20日
+          {`${TermStart?.split('-')[0]}年${TermStart?.split('-')[1]}月${
+            TermStart?.split('-')[2]
+          }日`}{' '}
+          至{' '}
+          {`${TermEnd?.split('-')[0]}年${TermEnd?.split('-')[1]}月${
+            TermEnd?.split('-')[2]
+          }日`}
         </div>
         <div
           style={{
@@ -73,7 +101,7 @@ export const Horizontal = () => {
             opacity: 0.8,
           }}
         >
-          北京市通州区专厂南里47号楼9层901
+          {Address}
         </div>
 
         <div
@@ -84,7 +112,11 @@ export const Horizontal = () => {
             opacity: 0.8,
           }}
         >
-          2020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12
+          {CheckDate?.split('-')[0]}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {CheckDate?.split('-')[1]}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {CheckDate?.split('-')[2]}
         </div>
 
         <div
@@ -99,14 +131,14 @@ export const Horizontal = () => {
             borderRadius: '100%',
           }}
         >
-          <Seal texts={checkArrs} />
+          <Seal texts={BelongOrg?.split('') || []} />
         </div>
 
         <QRCode
           style={{ position: 'absolute', right: 270, top: 315 }}
           size={90}
           bgColor={'transparent'}
-          value={'https://www.jianshu.com/u/992656e8a8a6'}
+          value={`http://www.gsxt.gov.cn/index.html?uniscid=${CreditCode}`}
         />
       </div>
     </div>

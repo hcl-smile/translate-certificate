@@ -20,5 +20,10 @@ export default defineConfig({
       target: 'http://localhost:3000',
       changeOrigin: true,
     },
+    '/company': {
+      target: 'http://api.qichacha.com/ECIComplement',
+      changeOrigin: true,
+      pathRewrite: { '^/company': '' },
+    },
   },
 });

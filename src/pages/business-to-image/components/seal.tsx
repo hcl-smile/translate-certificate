@@ -1,12 +1,12 @@
-export const Seal = ({ texts }: { texts: string[] }) => {
+export const Seal = ({ texts = [] }: { texts: string[] }) => {
   return (
     <>
       <div
         id="star-five"
         style={{
           position: 'absolute',
-          top: -76,
-          left: -42,
+          top: -74,
+          left: -36,
           transform: `rotate(-${(texts.length * 30) / 2}deg) scale(0.2)`,
         }}
       ></div>

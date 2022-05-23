@@ -1,15 +1,34 @@
+import React, { useEffect } from 'react';
 // @ts-ignore
 import QRCode from 'qrcode.react';
 // @ts-ignore
 import bgUrl from '@/assets/vertical.jpeg';
 import { Seal } from '@/pages/business-to-image/components/seal';
+import { CompanyInfoProps, download } from '@/pages/business-to-image';
 
-const checkArrs = ['漳', '州', '市', '公', '安', '局', '办', '事', '处'];
+export const Vertical: React.FC<{ info: CompanyInfoProps }> = ({ info }) => {
+  useEffect(() => {
+    download('1', info);
+  }, [info]);
 
-export const Vertical = () => {
+  const {
+    Name,
+    CreditCode,
+    EconKind,
+    OperName,
+    Scope,
+    RegistCapi,
+    StartDate,
+    TermStart,
+    TermEnd,
+    Address,
+    BelongOrg,
+    CheckDate,
+    WebSiteUrl,
+  } = info;
+
   return (
     <>
-      {/*<a href='' target={'_blank'} download={''}></a>*/}
       <div id={'node1'}>
         <div
           style={{
@@ -21,7 +40,7 @@ export const Vertical = () => {
           }}
         >
           <div style={{ paddingTop: 488, paddingLeft: 511, opacity: 0.8 }}>
-            91610133MA6UT2LK6C
+            {CreditCode}
           </div>
           <div
             style={{
@@ -31,7 +50,7 @@ export const Vertical = () => {
               opacity: 0.8,
             }}
           >
-            上海云砺信息科技有限公司
+            {Name}
           </div>
           <div
             style={{
@@ -41,7 +60,7 @@ export const Vertical = () => {
               opacity: 0.8,
             }}
           >
-            有限责任公司
+            {EconKind}
           </div>
           <div
             style={{
@@ -52,7 +71,7 @@ export const Vertical = () => {
               opacity: 0.8,
             }}
           >
-            福建省泉州市惠安县张坂镇玉前村山前112号
+            {Address}
           </div>
           <div
             style={{
@@ -62,7 +81,7 @@ export const Vertical = () => {
               opacity: 0.8,
             }}
           >
-            洪某某
+            {OperName}
           </div>
           <div
             style={{
@@ -72,7 +91,7 @@ export const Vertical = () => {
               opacity: 0.8,
             }}
           >
-            1000万人民币
+            {RegistCapi}
           </div>
           <div
             style={{
@@ -82,7 +101,8 @@ export const Vertical = () => {
               opacity: 0.8,
             }}
           >
-            2015年12月12日
+            {StartDate?.split('-')[0]}年{StartDate?.split('-')[1]}月
+            {StartDate?.split('-')[2]}日
           </div>
           <div
             style={{
@@ -92,7 +112,13 @@ export const Vertical = () => {
               opacity: 0.8,
             }}
           >
-            2015年12月12日&nbsp;&nbsp;至&nbsp;&nbsp;无固定日期
+            {`${TermStart?.split('-')[0]}年${TermStart?.split('-')[1]}月${
+              TermStart?.split('-')[2]
+            }日`}{' '}
+            至{' '}
+            {`${TermEnd?.split('-')[0]}年${TermEnd?.split('-')[1]}月${
+              TermEnd?.split('-')[2]
+            }日`}
           </div>
           <div
             style={{
@@ -103,7 +129,7 @@ export const Vertical = () => {
               opacity: 0.8,
             }}
           >
-            市场营销
+            {Scope}
           </div>
           <div
             style={{
@@ -117,7 +143,7 @@ export const Vertical = () => {
               borderRadius: '100%',
             }}
           >
-            <Seal texts={checkArrs} />
+            <Seal texts={BelongOrg?.split('') || []} />
           </div>
           <div
             style={{
@@ -128,12 +154,15 @@ export const Vertical = () => {
               opacity: 0.8,
             }}
           >
-            2021&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;05&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28
+            {CheckDate?.split('-')[0]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {CheckDate?.split('-')[1]}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {CheckDate?.split('-')[2]}
           </div>
           <QRCode
             style={{ position: 'absolute', left: 115, bottom: 215 }}
             bgColor={'transparent'}
-            value={'https://www.jianshu.com/u/992656e8a8a6'}
+            value={`http://www.gsxt.gov.cn/index.html?uniscid=${CreditCode}`}
           />
         </div>
       </div>
