@@ -80,7 +80,7 @@ const getInfo = async (
   setInfo: React.Dispatch<React.SetStateAction<Record<string, any> | null>>,
 ) => {
   const res = await request(
-    `https://translate-weld.vercel.app/api/image/${name}`,
+    `https://translate-hcl-smile.vercel.app/api/image/${name}`,
     {
       method: 'get',
     },
