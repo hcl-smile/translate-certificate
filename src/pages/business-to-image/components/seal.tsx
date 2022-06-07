@@ -5,8 +5,8 @@ export const Seal = ({ texts = [] }: { texts: string[] }) => {
         id="star-five"
         style={{
           position: 'absolute',
-          top: -74,
-          left: -36,
+          top: -64,
+          left: -28,
           transform: `rotate(-${(texts.length * 30) / 2}deg) scale(0.2)`,
         }}
       ></div>
@@ -17,7 +17,7 @@ export const Seal = ({ texts = [] }: { texts: string[] }) => {
           width: '100%',
           height: '100%',
           transformOrigin: 'center',
-          transform: `rotate(-${(texts.length * 30) / 2}deg)`,
+          transform: `rotate(-${(texts.length * 21) / 2}deg)`,
         }}
       >
         {texts.map((ret, index) => (
@@ -31,7 +31,7 @@ export const Seal = ({ texts = [] }: { texts: string[] }) => {
               width: 20,
               marginLeft: -10,
               transformOrigin: 'center',
-              transform: `rotate(${index * 30}deg)`,
+              transform: `rotate(${index * 21}deg)`,
             }}
           >
             {ret}

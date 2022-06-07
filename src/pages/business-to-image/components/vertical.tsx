@@ -116,9 +116,11 @@ export const Vertical: React.FC<{ info: CompanyInfoProps }> = ({ info }) => {
               TermStart?.split('-')[2]
             }日`}{' '}
             至{' '}
-            {`${TermEnd?.split('-')[0]}年${TermEnd?.split('-')[1]}月${
-              TermEnd?.split('-')[2]
-            }日`}
+            {TermEnd
+              ? `${TermEnd?.split('-')[0]}年${TermEnd?.split('-')[1]}月${
+                  TermEnd?.split('-')[2]
+                }日`
+              : '无营业期限限制'}
           </div>
           <div
             style={{
@@ -136,8 +138,8 @@ export const Vertical: React.FC<{ info: CompanyInfoProps }> = ({ info }) => {
               position: 'absolute',
               right: 190,
               bottom: 165,
-              width: 130,
-              height: 130,
+              width: 150,
+              height: 150,
               border: '3px solid #732b2a',
               color: '#732b2a',
               borderRadius: '100%',
